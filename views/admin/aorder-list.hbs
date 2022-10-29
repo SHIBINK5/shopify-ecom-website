@@ -1,0 +1,140 @@
+{{!-- <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">date</th>
+      <th scope="col">Address</th>
+      <th scope="col">Pincode</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Total Amount</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each order}}
+    <tr>
+      <th scope="row">{{inc @index}}</th>
+      <td>{{this.date}}</td>
+      <td>{{this.deliveryDetails.address}}</td>
+      <td>{{this.deliveryDetails.pincode}}</td>
+      <td>{{this.deliveryDetails.mobile}}</td>
+      <td>{{this.totalAmount}}</td>
+      <td>{{this.status}}</td>
+
+      <td>
+        <a href="/view-order/{{this._id}}" class="btn btn-primary">View</a>
+      </td>
+    </tr>
+    {{/each}}
+
+
+
+  </tbody>
+</table> --}}
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Bordered table</h4>
+      <p class="card-description"> Order List </code>
+      </p>
+      {{!-- <a class="btn btn-info float-right mb-3" href="/admin/add-products" role="button">Add Product</a> --}}
+      <div class="table-responsive">
+        <table style="border:2px solid black" class="table table-bordered ">
+          <thead>
+            <tr>
+              <th> Sl No </th>
+              <th> Date </th>
+              <th> Adress </th>
+              <th> Email</th>
+              <th> Mode</th>
+              <th> Amount </th>
+              <th>Status </th>
+              <th>Option</th>
+              <th> View </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {{!-- {{#each productDetails}} --}}
+            <tr>
+              {{#each order}}
+            <tr>
+              <th scope="row">{{inc @index}}</th>
+              <td>{{this.date}}</td>
+              <td>{{this.deliveryDetails.address}}</td>
+              <td>{{this.deliveryDetails.email}}</td>
+              <td>{{this.paymentMethod}}</td>
+              <td>{{this.totalAmount}}</td>
+              <td>{{this.status}}</td>
+              <td>
+                <a href="/admin/order-management/{{this._id}}" class="btn btn-primary">View</a>
+              </td>
+
+
+              <td>
+                  {{!-- {{#if (eqPlaced this.status)}}
+
+                 <a href="/admin/item-packed/{{this._id}}" class="btn btn-success">packed</a>
+                  {{else}}
+ <a href="/admin/item-shipped/{{this._id}}" class="btn btn-danger">shipped</a>
+ {{/if}} --}}
+             
+
+                {{#if (eqPlaced this.status)}}
+
+
+                <a href="/admin/item-packed/{{this._id}}" class="btn btn-success">packed</a>
+                {{else}}{{#if (eqPacked this.status)}}
+                <a href="/admin/item-shipped/{{this._id}}" class="btn btn-danger">shipped</a>
+                {{else}}{{#if (eqShipped this.status)}}
+                <a href="/admin/item-delivered/{{this._id}}" class="btn btn-danger">Delivered</a>
+
+                {{/if}}
+                {{/if}}
+                {{/if}}
+              </td>
+              {{!-- <td>
+                <a href="/admin/order-management/{{this._id}}" class="btn btn-primary">View</a>
+              </td> --}}
+            </tr>
+            {{/each}}
+
+            {{!-- <td>{{inc @index}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.description}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.price}}</td> --}}
+            {{!-- <td><img src="/images/{{this.image.[0]}}" style="width: 80px; ;size:80px" alt=""></td> --}}
+            {{!-- <td>{{this.number}}</td> --}}
+
+            {{!-- {{#if block}} --}}
+            {{!-- <td> --}}
+
+              {{!-- {{else}} --}}
+
+              {{!-- <a class="btn btn-primary" href="/admin/edit-products/{{this._id}}">Edit</a> --}}
+              {{!-- <a class="btn btn-danger" href="/admin/unblock/{{this._id}}">Delete</a> --}}
+              {{!-- <a class="btn btn-danger ml-15 float-center" href="/admin/pdelete/{{this._id}}">Delete</a>
+            </td> --}}
+            {{!-- {{/if}} --}}
+
+
+            </tr>
+            {{!-- {{/each}} --}}
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{!--
+<script>
+  $(document).ready(function () {
+    $('#usertable').DataTable();
+  });
+</script> --}}

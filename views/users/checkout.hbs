@@ -1,0 +1,401 @@
+<body>
+
+
+
+
+
+
+    <!-- Checkout Section Begin -->
+
+    <section class="checkout spad">
+        <div class="container">
+      
+<h3>Enter Shipping Address</h3>
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Select Saved Address
+</button>
+
+{{!-- <button class="btn btn-secondary" id="invoice" onclick="generatePDF()">Generate PDF</button> --}}
+ 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{#each userAddress}}
+        <h5 class="modal-title" id="exampleModalLongTitle">Address{{inc @index}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         
+         <p class="card-text">Name: {{this.name}}</p>
+                    <p class="card-text">mobile: {{this.mobile}}</p>
+                    <p class="card-text">Email: {{this.Email}}</p>
+                    <p class="card-text">Building: {{this.building}}</p>
+                    <p class="card-text">Street: {{this.street}}</p>
+                    <p class="card-text">City: {{this.city}}</p>
+                    <p class="card-text">District: {{this.district}}</p>
+                    <p class="card-text">Pin: {{this.pincode}}</p>
+                    
+
+      </div>
+      <div class="modal-footer">
+        <a href="/checkout?id={{this.id}}" class="btn btn-success btn-block ">Select
+                                                Address</a>
+        {{!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> --}}
+        {{/each}}
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+
+            <div class="checkout__form">
+                <form action="#" id="checkout-form">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6">
+                            <h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a coupon? <a href="#">  enter your code to avail Discount</h6>
+                            <h6 class="checkout__title">Billing Details</h6>
+                            <div class="row">
+                                <div class="col-lg-6" type="text" id="name" name="name">
+                                    <div class="checkout__input" placeholder=" {{this.name}} ">
+                                        <p>Name<span>*</span></p>
+                                        <input type="text" name="name" value="{{selectAddress.name}}">
+                                    </div>
+                                </div>
+                                {{!-- <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name<span>*</span></p>
+                                        <input type="text">
+                                    </div>
+                                </div> --}}
+                            </div>
+                            {{!-- <div class="checkout__input">
+                                <p>Building Name<span>*</span></p>
+                                <input type="text">
+                            </div> --}}
+                            <div class="checkout__input" type="text" id="address">
+                                <p>Address<span>*</span></p>
+                                <input type="text" placeholder="Building name" class="checkout__input__add"
+                                    name="address" value="{{selectAddress.building}}">
+                                <input type="text" placeholder="Street name">
+                            </div>
+                            <div class="checkout__input" type="text" id="city">
+                                <p>Town/City<span>*</span></p>
+                                <input type="text" name="city" value="{{selectAddress.city}}">
+                            </div>
+                            <div class="checkout__input" type="text" id="district">
+                                <p>District<span>*</span></p>
+                                <input type="text" name="district" value="{{selectAddress.district}}">
+                            </div>
+                            <div class="checkout__input" type="text" id="state">
+                                <p>State<span>*</span></p>
+                                <input type="text" name="state" value="{{selectAddress.state}}">
+                            </div>
+                            <div class="checkout__input" type="text" id="pin">
+                                <p>Postcode / ZIP<span>*</span></p>
+                                <input type="text" name="pin" value="{{selectAddress.pincode}}">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6" type="text" id="phone">
+                                    <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="text" name="phone" value="{{selectAddress.mobile}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" type="text" id="email">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" name="email" value="{{selectAddress.Email}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checkout__input__checkbox">
+                                <label for="acc">
+                                    Create an account?
+                                    <input type="checkbox" id="acc">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <p>Create an account by entering the information below. If you are a returning customer
+                                    please login at the top of the page</p>
+                            </div>
+
+                            {{!-- <div class="checkout__input">
+                                <p>Account Password<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <label for="diff-acc">
+                                    Note about your order, e.g, special noe for delivery
+                                    <input type="checkbox" id="diff-acc">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Order notes<span>*</span></p>
+                                <input type="text"
+                                    placeholder="Notes about your order, e.g. special notes for delivery.">
+                            </div> --}}
+                        </div>
+
+
+
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <div class="dropdown">
+                                   
+
+
+                             {{!-- {{#each viewCoupon}}
+                                <div>
+                                    <!-- The text field -->
+                                    <input type="text" value="{{this.coupon}}" id="myInput">
+
+                                    <!-- The button used to copy the text -->
+                                    <a onclick="myFunction()">Copy text</a>
+                                </div>
+                                {{/each}} --}}
+                                <div class="cart__discount">
+                                    <h6>Discount codes</h6>
+                                    <form action="#">
+                                        <input type="text" id="couponCode" placeholder="couponCode">
+                                        <a onclick="applyCoupon()">Apply</a>
+                                    </form>
+                                </div>
+
+                                <style>
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+
+<div class="dropdown">
+  <span><h4>Coupons available</h4></span>
+  <div class="dropdown-content">
+     {{#each viewCoupon}}
+       <input type="text" value="{{this.coupon}}" id="myInput">
+{{/each}} 
+  </div>
+</div>
+
+                                <h4 class="order__title">Your order</h4>
+                                <div class="checkout__order__products">Product <span>Price/Qty</span></div>
+
+                                {{#each products}}
+                                <ul class="checkout__total__products">
+                                    {{!-- <li>{{this.name}} <span>$ 300.0</span></li>
+                                    <li>{{this..name}} <span>$ 170.0</span></li> --}}
+                                    <li>{{this.product.name}} <span>{{this.product.price}}/{{this.quantity}} </span>
+                                    </li>
+                                    {{!-- <li>04. Cluten free mini dozen <span>$ 110.0</span></li> --}}
+                                </ul>
+                                {{/each}}
+                                <ul class="checkout__total__all">
+                                    {{!-- <li>Subtotal <span>$750.99</span></li> --}}
+                                    <input type="text" value="{{userId}}" hidden name="" id="userId">
+                                    <input type="text" name="" hidden value="{{total}}" id="total">
+
+                                    <input type="text" name="Grandtotal" hidden value="{{total}}" id="Grandtotal">
+                                    <li>Total <span id="discount">{{total}}</span></li>
+                                </ul>
+                                <h5>Payment Method</h5>
+                                <div class="form-check">
+
+                                    <input class="form-check-input" type="radio" name="payment-method" value="COD"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        COD
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment-method" value="ONLINE"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Online Payment
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                            </div>
+                        </div>
+                       
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Checkout Section End -->
+
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', function (evt) {
+            evt.preventDefault();
+            $.ajax({
+                url: '/place-order',
+                method: 'post',
+                data: $('#checkout-form').serialize(),
+                success: (response) => {
+                    if (response.codSuccess) {
+                        location.href = '/order-success'
+                    }
+                    else {
+                        console.log(response, 'haii')
+                        razorpayPayment(response)
+                    }
+                }
+            })
+        })
+        function razorpayPayment(order) {
+            var options = {
+                "key": "rzp_test_L1AE3AmUbMLnUL", // Enter the Key ID generated from the Dashboard
+                "amount": (order.amount) * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "INR",
+                "name": "Shopify",
+                "description": "Test Transaction",
+                "image": "https://www.canva.com/design/DAFK3SX6FTo/_FBZbqtkI2Ha7kR8XGGcDQ/edit?utm_content=DAFK3SX6FTo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "handler": function (response) {
+                    verifyPayment(response, order)
+                },
+                "prefill": {
+                    "name": "Gaurav Kumar",
+                    "email": "gaurav.kumar@example.com",
+                    "contact": "9999999999"
+                },
+                "notes": {
+                    "address": "Razorpay Corporate Office"
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+        function verifyPayment(payment, order) {
+            console.log(payment, order, 'kkkkk ')
+            $.ajax({
+
+                url: '/verify-payment',
+                data: {
+                    payment,
+                    order
+                },
+                method: 'post',
+                success: (response) => {
+                    console.log(response, 'response')
+                    if (response.status) {
+                        location.href = '/order-success'
+                    } else {
+                        alert('payment failed')
+                    }
+                }
+            })
+        }
+    </script>
+    <script>
+        function applyCoupon() {
+
+            var coupon = document.getElementById('couponCode').value
+
+            var userId = document.getElementById('userId').value
+            console.log(userId, '====id')
+            var total = parseInt(document.getElementById('total').value)
+            console.log(total)
+            $.ajax({
+                url: '/apply-coupon',
+                method: 'post',
+                data: {
+                    coupon: coupon,
+                    userId: userId
+                },
+                success: (response) => {
+                    console.log(response, "responseresponse")
+                    if (response.expirry) {
+                        alert('your coupon has expired')
+                    } else if (response.used) {
+                        alert('coupon is already used')
+                    } else if (response.unAvailable) {
+                        alert('sorry! its not valid')
+                    } else {
+                        var discount = parseInt(response.price)
+                        console.log(discount)
+                        var Grandtotal = total - discount
+                        console.log(Grandtotal)
+                        document.getElementById('discount').innerHTML = Grandtotal
+                        document.getElementById('Grandtotal').value = Grandtotal
+                        document.getElementById('Couponname').innerHTML = response.Couponname
+                        document.getElementById('Couponname').value = response.Couponname
+                        document.getElementById('Grandtotal').value = Grandtotal
+                        document.getElementById('grandtotal').value = Grandtotal
+                        document.getElementById('discount').value = discount
+                        document.getElementById('Discount').value = discount
+                        swal({
+                            title: "Congrats",
+                            text: "Succesfully Added Coupon",
+                            icon: "success",
+                            button: "ok",
+                        });
+                    }
+                }
+            })
+        }
+    </script>
+    <script>
+        function myFunction() {
+            // Get the text field
+            var copyText = document.getElementById("myInput");
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+            // Alert the copied text
+            swal("coupon Successfully Copied");
+        }
+    </script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script data-key="************" data-amount="100" data-buttontext="proceed to payment" data-name="test"
+        data-description="Purchase Description" data-image="logo" data-prefill.name="mnbvc"
+        data-prefill.email="adsdasdd" data-theme.color="#F37254"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+         <script>
+			function generatePDF() {
+			const element = document.getElementById('invoice');
+			var opt = {
+				  margin:       1,
+				  filename:     'invoice.pdf',
+				  image:        { type: 'jpeg', quality: 0.98 },
+				  html2canvas:  { scale: 2 },
+				  jsPDF:        { unit: 'in', format: [8,8], orientation: 'portrait' }
+				};
+				// Choose the element that our invoice is rendered in.
+				html2pdf().set(opt).from(element).save();
+			}
+		</script>

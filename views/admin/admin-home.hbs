@@ -1,0 +1,267 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> --}}
+<div class="content">
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+               
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total Users</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{userCount}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-users fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Total Orders</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{orderCount}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-beer fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Products
+                                        Delivered
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{totalDelivered}}</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-check fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Products Cancelled</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{cancelled}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-exclamation-triangle fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Row -->
+
+            <div class="rowrs">
+
+                <!-- Area Chart -->
+                <div class="col-xl-8 col-lg-7">
+                    <div class="card shadow mb-4">
+                      <div class="text-center position-absolute top-0 start-50 translate-middle" style="padding:20px;">
+			<button class="btn btn-secondary" onclick="generatePDF1()">Generate PDF</button>
+		</div><br>
+                        <!-- Card Header - Dropdown -->
+                           <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                    </div>
+                
+                </div>
+                
+
+                <!-- Pie Chart -->
+                {{!-- <div class="col-xl-4 col-lg-5">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="chart-pie pt-4 pb-2">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div> --}}
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <!-- Content Column -->
+                 <div class="col-xl-8 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                          <div class="text-center position-absolute top-0 start-50 translate-middle" style="padding:20px;">
+			<button class="btn btn-secondary" onclick="generatePDF2()">Generate PDF</button>
+		</div><br>
+                         <canvas id="myChartsecond" style="width:100%;max-width:600px"></canvas>
+                    </div>
+                
+                </div>
+
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            {{!-- <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; FOOD COURT</span>
+                    </div>
+                </div>
+            </footer> --}}
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+ 
+
+</body>
+</div>
+
+
+<script>
+var xValues = ["COD Count", "ONLINE Count"];
+var yValues = [{{codCount}}, {{ONLINECount}}];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Analysing PaymentMethod"
+    }
+  }
+});
+</script>
+
+
+
+
+<script>
+var xValues = ["July", "Aug", "Sep", "Oct", "Nov"];
+var yValues = [1000, 1149, 444, {{monthamount.Tamount}}, 0];
+
+var barColors = ["red", "green","blue","orange","brown"];
+new Chart("myChartsecond", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Monthly Revenue "
+    }
+  }
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+ <script>
+			function generatePDF1() {
+			const element = document.getElementById('myChart');
+			var opt = {
+				  margin:       1,
+				  filename:     'dashboard.pdf',
+				  image:        { type: 'jpeg', quality: 0.98 },
+				  html2canvas:  { scale: 2 },
+				  jsPDF:        { unit: 'in', format: [8,10], orientation: 'landscape' }
+				};
+				// Choose the element that our invoice is rendered in.
+				html2pdf().set(opt).from(element).save();
+			}
+		</script>
+
+         <script>
+			function generatePDF2() {
+			const element = document.getElementById('myChartsecond');
+			var opt = {
+				  margin:       1,
+				  filename:     'dashboard.pdf',
+				  image:        { type: 'jpeg', quality: 0.98 },
+				  html2canvas:  { scale: 2 },
+				  jsPDF:        { unit: 'in', format: [8,10], orientation: 'landscape' }
+				};
+				// Choose the element that our invoice is rendered in.
+				html2pdf().set(opt).from(element).save();
+			}
+		</script>

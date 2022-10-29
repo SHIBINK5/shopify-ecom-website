@@ -1,0 +1,260 @@
+{{!-- <div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+
+      <p class="card-description">Your Cart </code>
+      </p>
+
+      <div class="table-responsive">
+
+        <table style="border:2px solid black" class="table table-bordered ">
+          <thead>
+            <tr>
+              <th> # </th>
+              <th> Product </th>
+              <th> Name </th>
+              <th>Price</th>
+              <th>Quantity </th>
+              <th> Status </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {{#each products}}
+            <tr>
+              <td>{{this.no}}</td>
+              <td><img style="width:70px;height:70px" src="/images/{{this.image.[0]}}" alt=""></td>
+              <td>{{this.name}}</td>
+              <td>{{this.price}}</td>
+              <td>
+                <button class="cart-item-count mr-3">-</button>1<button class="cart-item-count mr-3">+</button>
+              </td>
+
+
+
+              <td>
+                <a class="btn btn-danger ml-15 float-center" href="/admin/delete/{{this._id}}">Remove</a>
+              </td>
+
+            </tr>
+            {{/each}}
+
+          </tbody>
+        </table>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+--}}
+
+
+
+
+
+
+
+
+
+<section class="shopping-cart spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="shopping__cart__table">
+          <table id="myDiv">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each products}}
+              <tr>
+
+                <td class="product__cart__item p-5">
+                  <div class="product__cart__item__pic">
+                    <img src="/images/{{this.product.image.[0]}}" alt="">
+                   
+                  </div>
+                  <div class="product__cart__item__pic">
+                    
+                
+                  </div>
+                </td>
+                 <td class="quantity__item">
+                  <div class="quantity">
+                
+                      <h5>{{this.product.name}}</h5>
+                   
+                  </div>
+
+                </td>
+
+               
+                 
+                <td>
+                 
+                  <button class="cart-item-count mr-3 btn btn-primary"
+                    onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{this.quantity}}',-1)">-</button>
+                  <span id="{{this.product._id}}"> {{this.quantity}} </span>
+                  <button class="cart-item-count mr-3 btn btn-primary"
+                    onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{this.quantity}}',1)">+</button>
+                </td>
+
+                <td class="cart__price">
+                  <h5>₹{{this.product.price}}</h5>
+                </td>
+                {{!-- <td class="cart__close"><i class="fa fa-close"></i></td> --}}
+                <td>
+                  <button class="btn btn-danger ml-15 float-center"
+                    onclick="deleteProduct('{{this._id}}','{{this.product._id}}')">Remove</button>
+                </td>
+
+
+              </tr>
+              {{/each}}
+
+
+
+            </tbody>
+          </table>
+        </div>
+        {{!-- <tr>
+          <td>
+            <h2>Total</h2>
+
+          </td>
+
+
+          <td>
+            <h2>123</h2>
+          </td>
+
+        </tr> --}}
+        {{!--
+        <hr>
+        <div class="float-right pr-5">
+          <h5 class="float-left mr-5">TOTAL:Rs-<span id="total">{{totalValue}}</span></h5><br>
+          <a href="#" class="btn btn-success mt-3" style="width:100%;"><b>Proceed to Checkout</b></a>
+
+        </div> --}}
+
+
+{{!-- 
+        <hr>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="continue__btn">
+              <a href="#">Continue Shopping</a>
+            </div>
+          </div> --}}
+          {{!-- <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="continue__btn update__btn">
+              <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+            </div>
+          </div> --}}
+        </div>
+      </div>
+      <div class="col-lg-10">
+        {{!-- <div class="cart__discount">
+          <h6>Discount codes</h6>
+          <form action="#">
+            <input type="text" placeholder="Coupon code">
+            <button type="submit">Apply</button>
+          </form>
+        </div> --}}
+        <div class="cart__total">
+
+          <h6>Cart total</h6>
+          <ul>
+            {{!-- <li>Subtotal <span>$ 169.50</span></li> --}}
+            {{!-- <li>Total <span>$ 169.50</span></li> --}}
+            <h6 class="float-left mr-5"><b>TOTAL:₹</b><span id="total"><b>{{total}} </b></span></h6><br>
+          </ul>
+          <a href="/checkout" class="primary-btn">Proceed to checkout</a>
+        </div>
+         <div class="col-lg-6  col-md-6 col-sm-6">
+            <div class="continue__btn">
+              <a href="#">Continue Shopping</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function changeQuantity(cartId, proId, qty, count) {
+
+    let quantity = parseInt(qty)
+
+    console.log(cartId, proId, count, quantity, 'jjjjjjjjjjjjjjjjjjjjjjjjjjj')
+    $.ajax({
+      url: '/change-product-quantity',
+      data: {
+
+        cart: cartId,
+        product: proId,
+        count: count,
+        Quantity: quantity
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.removeProduct) {
+          alert("Product removed from cart")
+          location.reload()
+        } else {
+        
+          document.getElementById(proId).innerHTML = quantity + count
+
+          location.reload()
+        }
+      }
+    })
+  }
+
+</script>
+
+
+
+
+<script>
+
+  function deleteProduct(cartId, proId) {
+    console.log(cartId, proId)
+    $.ajax({
+      url: '/delete-product',
+      data: {
+        cart: cartId,
+        product: proId,
+
+      },
+
+      method: 'post',
+      success: (response) => {
+
+        if (response) {
+          alert("delete")
+          // swal("Deleted Successflly");
+
+          // $("#myDiv").Load(Location.href + " #mydiv>*","");
+          $("#mydiv").load(location.href + " #mydiv");
+
+          location.reload();
+        } else {
+          $("#mydiv").load(location.href + " #mydiv");
+
+        }
+
+      }
+
+    })
+  }
+
+</script>

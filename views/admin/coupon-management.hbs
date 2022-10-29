@@ -1,0 +1,47 @@
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Bordered table</h4>
+                    <p class="card-description"> Coupons available </code>
+                    </p>
+                    <a class="btn btn-info float-right mb-3" href="/admin/add-coupon" role="button">Add Coupon</a>
+                    <div class="table-responsive">
+
+                      <table style="border:2px solid black" class="table table-bordered ">
+                        <thead>
+                          <tr>
+                            {{!-- <th> # </th> --}}
+                            <th>Sl No </th>
+                            <th>Coupon </th>
+                             <th>Discount</th>
+                              <th>Expiry </th>
+                              <th>Action</th>
+                            {{!-- <th> Mobile number</th>
+                            <th> Status </th> --}}
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                            {{#each viewCoupon}}
+                            <tr>    
+                                  <td>{{inc @index}}</td>
+                                 <td>{{this.coupon}}</td>
+                                 <td>{{this.price}}</td>
+                                  <td>{{this.expiry}}</td>
+                                 <td>            
+                                    <a class="btn btn-danger ml-15 float-center" href="/admin/coupondelete/{{this._id}}" >Delete</a>           
+                                </td>
+                               
+                            </tr>
+                            {{/each}}
+                         
+                        </tbody>
+                      </table>
+                      
+                    </div>
+                   
+                   
+                  </div>
+                </div>
+              </div>
+              

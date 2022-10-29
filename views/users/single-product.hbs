@@ -1,0 +1,165 @@
+<section class="about_section layout_padding ">
+    <div class="container">
+
+        {{#with products}}
+
+        <div class="row mx-5 row d-flex justify-content-center">
+
+
+            <div class="container  mb-5 ">
+                <div class="row d-flex justify-content-center ">
+                    <div class="col-md-10">
+                        <div class="card bg-white ">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="images p-3">
+                                        <div class="text-center p-4"> <img id="main-image"
+                                                src="/images/{{this.image.[0]}}" width="250" /> </div>
+                                        {{!-- <div class="thumbnail text-center"> <img onclick="change_image(this)"
+                                                src="https://i.imgur.com/Rx7uKd0.jpg" width="70"> <img
+                                                onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg"
+                                                width="70"> </div> --}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="product p-4">
+
+                                        <div class="mt-4 mb-3"> <span
+                                                class="text-uppercase text-muted brand">{{this.category}}</span>
+                                            <h3 class="card-header">{{this.name}}</h3>
+                                        </div>
+                                        <p class="about mdb-color white-text"> {{this.description}}</p>
+
+                                        <h6>
+                                            ₹{{this.price}}
+                                        </h6>
+                                        {{!-- <h6>
+                                            Home Delivery Available
+                                        </h6> --}}
+                                        
+                                     
+                                        <div class="cart mt-4 align-items-center"> <button onclick="addToCart('{{this._id}}')" 
+                                                class="btn btn-success text-uppercase mr-2 px-4">Add to cart</button> <i
+                                                {{!-- class="fa fa-heart text-muted"></i> <i --}}
+                                                {{!-- class="fa fa-share-alt text-muted"></i> </div> --}}
+                                    </div>
+                                     <button class="btn btn-primary" onclick="addtowishlist('{{this._id}}')">Add To Wishlist</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        {{/with}}
+
+
+    </div>
+
+</section>
+{{!-- <footer class="footer_section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 footer-col">
+        <div class="footer_contact">
+          <h4>
+            Contact Us
+          </h4>
+          <div class="contact_link_box">
+            <a href="">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                Location
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call +01 1234567890
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                demo@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 footer-col">
+        <div class="footer_detail">
+          <a href="" class="footer-logo">
+            Feane
+          </a>
+          <p>
+            Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin
+            words, combined with
+          </p>
+          <div class="footer_social">
+            <a href="">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-pinterest" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 footer-col">
+        <h4>
+          Opening Hours
+        </h4>
+        <p>
+          Everyday
+        </p>
+        <p>
+          10.00 Am -10.00 Pm
+        </p>
+      </div>
+    </div>
+    <div class="footer-info">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a><br><br>
+        &copy; <span id="displayYear"></span> Distributed By
+        <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+      </p>
+    </div>
+  </div>
+</footer> --}}
+
+<script>
+    function addtowishlist(proId){
+    $.ajax({
+        url: '/add-to-wishlist/' + proId,
+        method: 'get',
+        success: (response) =>  {
+            if(response.response.status){
+                
+                //$("#wish-count").load(location.href + " #wish-count");
+               Swal.fire({
+								icon:'success',
+								title:'Added to Wishlist',
+								showConfirmButton: false,
+								timer:1500
+							})
+            }else{
+               // $("#wish-count").load(location.href + " #wish-count");
+               alert('failed')
+            }
+        }
+    })
+}
+</script>

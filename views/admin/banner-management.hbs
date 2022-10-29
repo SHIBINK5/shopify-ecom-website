@@ -1,0 +1,59 @@
+<div class="section"></div>
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Bordered table</h4>
+                    <p class="card-description"> Banners available </code>
+                    </p>
+                     <a class="btn btn-info float-right mb-3" href="/admin/add-banner" role="button">Add Banner</a>
+                    <div class="table-responsive">
+                      <table style="border:2px solid black" class="table table-bordered ">
+                        <thead>
+                          <tr>
+                            <th> Sl No </th>
+                            <th> Heading </th>
+                            <th> Title </th>
+                            <th> Description</th>
+                            <th> Image </th>
+                            <th> Edit/Delete </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                            {{#each bannerDetails}}
+                            <tr>
+                                 <td>{{inc @index}}</td>
+                                <td>{{this.heading}}</td>
+                                <td>{{this.title}}</td>
+                                 <td >{{this.description}}</td>
+                                  <td><img src="/images/{{this.image.[0]}}" style="width: 80px; ;size:80px" alt=""></td>
+                                {{!-- <td>{{this.number}}</td> --}}
+                               
+                                 {{!-- {{#if block}} --}}
+                                 <td>
+                                                                  
+                              {{!-- {{else}} --}}
+                     
+                                    {{!-- <a class="btn btn-primary" href="/admin/editbanner/{{this._id}}" >Update</a>   --}}
+                                     {{!-- <a class="btn btn-danger" href="/admin/unblock/{{this._id}}">Delete</a>     --}}
+                                     <a class="btn btn-danger ml-15 float-center" href="/admin/bannerdelete/{{this._id}}" >Delete</a>     
+                                </td>
+                                {{!-- {{/if}} --}}
+                               
+                               
+                            </tr>
+                            {{/each}}
+                         
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+{{!-- <script>
+  $(document).ready( function () {
+    $('#usertable').DataTable();
+} );
+</script>  --}}

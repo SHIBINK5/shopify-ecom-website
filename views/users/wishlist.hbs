@@ -1,0 +1,145 @@
+<section class="shopping-cart spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="shopping__cart__table">
+          <table id="myDiv">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+              
+              </tr>
+            </thead>
+            <tbody>
+              {{#each wishProducts}}
+              <tr>
+
+                <td class="product__cart__item p-5">
+                  <div class="product__cart__item__pic">
+                    <img src="/images/{{this.product.image.[0]}}" alt="">
+                  </div>
+                    <td class="quantity__item">
+                  <div class="quantity">
+                
+                      <h5>{{this.product.name}}</h5>
+                   
+                  </div>
+
+                </td>
+                  <div class="product__cart__item__text mt-3">
+                    {{!-- <h5>{{this.product.name}}</h5> --}}
+
+                  </div>
+                </td>
+
+                {{!-- <td class="quantity__item">
+                  <div class="quantity">
+                    <div class="pro-qty-2">
+                      <input type="text" value="{{this.quantity}}">
+                    </div>
+                  </div>
+
+                </td> --}}
+                {{!-- <td>
+                  <button class="cart-item-count mr-3 btn btn-primary"
+                    onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{this.quantity}}',-1)">-</button>
+                  <span id="{{this.product._id}}"> {{this.quantity}} </span>
+                  <button class="cart-item-count mr-3 btn btn-primary"
+                    onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{this.quantity}}',1)">+</button>
+                </td> --}}
+
+                <td class="cart__price">
+                  <h5>₹{{this.product.price}}</h5>
+                </td>
+                  <td>
+                  <button class="btn btn-success ml-15 float-center"
+                     onclick="addToCart('{{this.product._id}}')" >Add to cart</button>
+                </td>
+                {{!-- <td class="cart__close"><i class="fa fa-close"></i></td> --}}
+                <td>
+                  <button class="btn btn-danger ml-15 float-center"
+                    onclick="deleteWishProduct('{{this._id}}','{{this.product._id}}')">Remove</button>
+                </td>
+
+
+              </tr>
+              {{/each}}
+
+
+
+            </tbody>
+          </table>
+        </div>
+       
+ <div class="continue__btn ">
+              <a href="/">Continue Shopping</a>
+            </div>
+
+  </div>
+</section>
+
+
+
+
+<script>
+
+  function deleteWishProduct(cartId, proId) {
+    console.log(cartId, proId)
+    $.ajax({
+      url: '/delete-wishproduct',
+      data: {
+        cart: cartId,
+        product: proId,
+
+      },
+
+      method: 'post',
+      success: (response) => {
+
+        if (response) {
+          alert("delete")
+          // swal("Deleted Successflly");
+
+          // $("#myDiv").Load(Location.href + " #mydiv>*","");
+          $("#mydiv").load(location.href + " #mydiv");
+
+          location.reload();
+        } else {
+          $("#mydiv").load(location.href + " #mydiv");
+
+        }
+
+      }
+
+    })
+  }
+
+</script>
+
+
+
+<script>
+
+function addToCart(ProId){
+    $.ajax({
+        url:'/add-to-cart/'+ProId,
+        method:'get',
+        success:(response)=>{
+            if(response.status){
+                Swal.fire({
+                    icon:'success',
+                    title:'Added to Cart',
+                    showConfirmButton: false,
+                    timer:1500
+                })
+                let count=$('#wish-count').html()
+                count=parseInt(count)+1
+                $("#wish-count").html(count)
+            }
+        }
+    })
+}
+
+</script>
