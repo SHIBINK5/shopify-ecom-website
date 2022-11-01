@@ -1,4 +1,5 @@
 const mongoClient = require('mongodb').MongoClient
+const env=require('dotenv')
 
 const state = {
     db:null
@@ -6,7 +7,7 @@ const state = {
 
 module.exports.connect = (done)=>{
     
-    const url = 'mongodb+srv://shibink:shibink515.sk@cluster0.h2ema2c.mongodb.net/shopify?retryWrites=true&w=majority'
+    const url = process.env.db;
    
     const dbname = 'shopify'
 
