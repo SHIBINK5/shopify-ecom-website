@@ -5,12 +5,13 @@ const state = {
 }
 
 module.exports.connect = (done)=>{
-    const url = 'mongodb://localhost:27017'
+    
+    const url = 'mongodb+srv://shibink:shibink515.sk@cluster0.h2ema2c.mongodb.net/shopify?retryWrites=true&w=majority'
    
-    const dbname = 'Shopping'
+    const dbname = 'shopify'
 
     mongoClient.connect(url,(err,data)=>{
-        if(err) return done(err)
+        if(err) return done(err) 
         
         state.db = data.db(dbname)
     })

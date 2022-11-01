@@ -9,6 +9,7 @@ module.exports={
    insertBanner:(bannerDetails)=>{
     return new Promise((resolve,reject)=>{
         try {
+            
             db.get().collection(collection.BANNER_COLLECTION).insertOne(bannerDetails).then((data)=>{   
                 resolve(data)
             })
@@ -22,7 +23,8 @@ viewBanners:()=>{
 
     return new Promise(async(resolve,reject)=>{
         try {
-            let viewbanner=await db.get().collection(collection.BANNER_COLLECTION).find().toArray()
+           
+            let viewbanner=await db.get().collection('banner').find().toArray()
             console.log(viewbanner)
             resolve(viewbanner)
         

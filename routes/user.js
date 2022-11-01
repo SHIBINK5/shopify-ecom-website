@@ -13,7 +13,7 @@ const collection = require('../config/collection');
 /* GET home page. */
 router.get('/', async function (req, res, next) {
   try {
-    bannerDetails = await bannerHelpers.viewBanners()
+   let bannerDetails = await bannerHelpers.viewBanners()
     let users = req.session.user
     console.log(users);
     let cartCount = null
@@ -442,8 +442,9 @@ router.get('/delete-address/:id', async (req, res, next) => {
 
         let products = await productHelpers.getProductDetails(product)
 
-
-        res.render('users/single-product', { layout: 'user-layout', user: true, products, users })
+        let wishCount = await userHelpers.getWishCount(req.session.user._id)
+        let cartCount = await userHelpers.getCartCount(req.session.user._id)
+        res.render('users/single-product', { layout: 'user-layout', user: true, products, users,wishCount,cartCount })
 
       } else {
         let product = req.params.id

@@ -21,11 +21,11 @@ module.exports={
 
         return new Promise(async(resolve,reject)=>{
             try {
-                let viewproduct=await db.get().collection(collection.PRODUCT_COLLECTION).find({delete:false}).toArray()
+                let viewproduct=await db.get().collection('products').find({delete:false}).toArray()
                 console.log(viewproduct)
                 resolve(viewproduct)
             } catch (error) {
-                reject(error) 
+               reject(error) 
             }
        
 

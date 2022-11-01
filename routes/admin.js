@@ -46,12 +46,12 @@ router.get('/',adminMiddleware.admin, async(req, res, next)=> {
   
     let cancelled = await dashbHelpers.cancelled()
   
-    let monthamount = await dashbHelpers.totalMonthAmount()
+    // let monthamount = await dashbHelpers.totalMonthAmount()
   
-    console.log(monthamount,'ddddddddddddddddddddddddddddd');
-    console.log(monthamount.Tamount,'lllllllllllllllllllllllllllllllll');
+    // console.log(monthamount,'ddddddddddddddddddddddddddddd');
+    // console.log(monthamount.Tamount,'lllllllllllllllllllllllllllllllll');
    
-    res.render('admin/admin-home',{layout:'admin-layout',admin:true,userCount,orderCount,codCount,ONLINECount,totalDelivered,totalShipped,cancelled,monthamount});
+    res.render('admin/admin-home',{layout:'admin-layout',admin:true,userCount,orderCount,codCount,ONLINECount,totalDelivered,totalShipped,cancelled});
     
   } catch (error) {
     next(error)
